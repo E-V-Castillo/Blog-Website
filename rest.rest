@@ -1,0 +1,11 @@
+GET http://localhost:3100/blogs
+
+
+###
+POST  http://localhost:3100/
+
+{
+    "title": "This is my first Blog",
+    "description": "Welcome to my first Blog, this is my description",
+    "markdown": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis sed dui et sollicitudin. Quisque dapibus non justo sed consectetur. Cras egestas, turpis et lobortis malesuada, quam lacus finibus enim, vitae aliquet magna lorem ut nulla. Fusce eu leo id arcu imperdiet hendrerit. Duis interdum quis dui non suscipit."
+}
