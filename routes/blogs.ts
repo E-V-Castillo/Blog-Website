@@ -1,61 +1,13 @@
-import { PrismaClient } from "@prisma/client";
 import express,{NextFunction, Request, Response} from "express"
-import { nextTick } from "process";
+
+import { createBlog, getBlogs, getBlogById, updateBlog, deleteBlog } from '../controller/blogs'
+// imports
+
 const router = express.Router()
-const prisma = new PrismaClient()
 
-async function createBlog(data :{
-        title: string,
-        description: string
-        markdown: string
-    }){
-    return await prisma.blog.create({
-        data: {
-            title: data.title,
-            description: data.description,
-            markdown: data.markdown
-        }
-    })
-}
+// new instances
 
 
-async function getBlogs(){
-    try {
-        return await prisma.blog.findMany()
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-async function getBlogById (id: number){
-    try {
-        return await prisma.blog.findMany({
-            where:{
-                id: id
-        }})
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-
-async function updateBlog (id:number, title: string, description: string,markdown: string){
-    const updatedBlog = prisma.blog.update({
-        where:{ id },
-        data:{
-            title: title,
-            description: description,
-            markdown: markdown
-        }
-    })
-    return updatedBlog
-}
-
-async function deleteBlog (id:number){
-    await prisma.blog.delete({
-        where: {id}
-    })
-}
 
 router.get("/", async (req : Request, res: Response, next: NextFunction) => {
     try {
@@ -86,14 +38,15 @@ router.post("/", async (req : Request, res: Response, next: NextFunction) =>{
     //     markdown: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis sed dui et sollicitudin. Quisque dapibus non justo sed consectetur. Cras egestas, turpis et lobortis malesuada, quam lacus finibus enim, vitae aliquet magna lorem ut nulla. Fusce eu leo id arcu imperdiet hendrerit. Duis interdum quis dui non suscipit.",
     // }
     // console.log(data)
+    const {title, description, markdown} = req.body
     try {
-        createBlog(req.body)
+        createBlog(title, description, markdown)
         res.status(201).send("User Created")
     } catch (error) {
         next(error)
-    }
-    
+    }  
 })
+
 
 router.patch("/:id",(req : Request, res: Response, next: NextFunction) =>{
     // const { id } = req.params
