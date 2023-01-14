@@ -1,7 +1,5 @@
-GET http://localhost:3110/blogs
+http://localhost:3110/blogs
 
 
 ###
-POST  http://localhost:3110/blogs
-
-Content-Type: application/json
+DELETE http://localhost:3110/blogs/2
