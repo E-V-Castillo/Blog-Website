@@ -1,0 +1,67 @@
+*,
+*::after,
+*::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    font-family: "Montaga", serif;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+img {
+    max-width: 100%;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+/* Default Styles */
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 120px;
+    margin-inline: 120px;
+    margin-bottom: 4.5rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo > img {
+    width: 38px;
+}
+
+.logo > h1 {
+    font-size: 36;
+}
+
+header > ul {
+    display: flex;
+    align-items: center;
+    gap: 6.875rem;
+}
+/* Header Area */
+
+main {
+    margin-inline: 7.5rem;
+}
+
+.articles {
+    display: flex;
+    flex-direction:column;
+    gap: 3.125rem
+}

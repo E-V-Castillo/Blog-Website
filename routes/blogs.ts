@@ -12,19 +12,27 @@ const router = express.Router()
 router.get("/", async (req : Request, res: Response, next: NextFunction) => {
     try {
         const blogs = await getBlogs()
-        res.json(blogs)
-        ;
+        res.render("./blogsIndex/blogsIndex.ejs", {blogs:blogs})
     } catch (error) {
         next(error)
     }
 })
 
 
-router.get("/:id", async(req : Request, res: Response, next: NextFunction) =>{
+router.get("/:id/edit", async(req : Request, res: Response, next: NextFunction) =>{
     try {
         const {id} = req.params
+        console.log(id)
         const blog = await getBlogById(Number(id))
-        res.json(blog)
+        res.json(blog)  
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.get("/new", async (req : Request, res: Response, next: NextFunction) =>{
+    try {
+        res.render("./blogsIndex/newBlog.ejs")
     } catch (error) {
         next(error)
     }
@@ -32,19 +40,13 @@ router.get("/:id", async(req : Request, res: Response, next: NextFunction) =>{
 
 
 router.post("/", async (req : Request, res: Response, next: NextFunction) =>{
-    // const data = {
-    //     title: "This is my first Blog",
-    //     description: "Welcome to my first Blog, this is my description",
-    //     markdown: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis sed dui et sollicitudin. Quisque dapibus non justo sed consectetur. Cras egestas, turpis et lobortis malesuada, quam lacus finibus enim, vitae aliquet magna lorem ut nulla. Fusce eu leo id arcu imperdiet hendrerit. Duis interdum quis dui non suscipit.",
-    // }
-    // console.log(data)
     const {title, description, markdown} = req.body
     try {
-        createBlog(title, description, markdown)
-        res.status(201).send("User Created")
+        await createBlog(title, description, markdown)
+        res.redirect("/blogs")
     } catch (error) {
         next(error)
-    }  
+    } 
 })
 
 
