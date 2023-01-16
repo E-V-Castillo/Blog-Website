@@ -46,6 +46,6 @@ export async function updateBlog (id:number, title: string, description: string,
 
 export async function deleteBlog (id:number){
     await prisma.blog.delete({
-        where: {id}
+        where: {id:id}
     })
 }

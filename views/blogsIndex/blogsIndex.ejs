@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montaga&display=swap" rel="stylesheet">
-    
+    <script src="/static/script/blogIndex.js"></script>
 </head>
 <body>
     <div>
@@ -27,7 +27,7 @@
                         <h1><%= blog.title %></h1>
                         <p><%= blog.description%></p>
                         <a href="#">Edit</a>
-                        <a href="#">Delete</a>
+                        <a href="#" onclick="deleteBlog(`<%=blog.id%>`)">Delete</a>
                     </div>
                 <% }); %>
             </div>

@@ -75,10 +75,8 @@ router.patch("/:id",(req : Request, res: Response, next: NextFunction) =>{
 router.delete("/:id",(req : Request, res: Response, next:NextFunction) =>{
     try {
         const {id} =  req.params
-        console.log(id)
-        // const id = 1
         deleteBlog(Number(id))
-        res.send("deleted")
+        res.status(200).json( {message: "Blog was deleted"})
     } catch (error) {
         next(error)
     }
