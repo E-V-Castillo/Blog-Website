@@ -2,4 +2,4 @@ http://localhost:3110/blogs
 
 
 ###
-DELETE http://localhost:3110/blogs/2
+DELETE http://localhost:3110/blogs/
